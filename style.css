@@ -1,0 +1,229 @@
+/* ============================================================
+   WORLD OF WALKER — MYSTERIOUS INTERFACE
+   ============================================================ */
+
+:root {
+  /* -- Core Colors -- */
+  --bg-core: #000000;
+  /* Deepest black for background */
+  --text-primary: #e0e0e0;
+  /* Off-white for primary text */
+
+  /* -- Accents -- */
+  --accent-cyan: #00f3ff;
+  /* Cyberpunk cyan for focus/success */
+  --accent-error: #ff3333;
+  /* Bright red for errors */
+
+  /* -- Glow Effects -- */
+  --glow-soft: rgba(0, 243, 255, 0.2);
+  /* Subtle ambient glow */
+  --glow-strong: rgba(0, 243, 255, 0.6);
+  /* Intense focus glow */
+
+  /* -- Typography -- */
+  --font-display: 'Orbitron', sans-serif;
+  /* Sci-fi headers */
+  --font-mono: 'Rajdhani', monospace;
+  /* Tech/Code text */
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-core);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Background Effects */
+
+/* Container */
+.container {
+  position: relative;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.brand-logo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px var(--glow-soft));
+  opacity: 0.9;
+}
+
+/* Input Area */
+.code-input {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.code-box {
+  width: 3rem;
+  height: 4rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.code-box:focus {
+  border-bottom-color: var(--accent-cyan);
+  text-shadow: 0 0 10px var(--glow-strong);
+  transform: scale(1.1);
+}
+
+.code-box.filled {
+  border-bottom-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  text-shadow: 0 0 10px var(--glow-soft);
+}
+
+.code-box.error {
+  border-bottom-color: var(--accent-error);
+  color: var(--accent-error);
+  text-shadow: 0 0 10px rgba(255, 51, 51, 0.6);
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+/* Status Message */
+.status {
+  height: 20px;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  opacity: 0.8;
+  text-align: center;
+}
+
+.status.error {
+  color: var(--accent-error);
+}
+
+/* Reveal Panel */
+.reveal-panel {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+  z-index: 50;
+}
+
+.reveal-panel.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Focused Terminal Styles */
+.focused-terminal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.term-line {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  text-align: center;
+  min-height: 2rem;
+  /* Prevent layout shift */
+}
+
+.term-line.active {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 10px var(--glow-strong);
+}
+
+.term-line.active::after {
+  content: '_';
+  animation: blink 1s infinite;
+}
+
+.status-ok {
+  color: #00ff00;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.secret-message-reveal {
+  margin-top: 3rem;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0 30px var(--accent-cyan);
+  line-height: 1.4;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.reveal-content {
+  /* Legacy cleanup */
+  display: flex;
+  justify-content: center;
+}

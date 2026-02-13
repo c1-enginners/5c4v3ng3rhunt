@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scavenger Hunt — Enter The Code</title>
+    <meta
+      name="description"
+      content="A cryptic scavenger hunt challenge. Enter the secret code to unlock the hidden message."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <main class="container">
+      <img src="assets/logo.svg" alt="Brand Logo" class="brand-logo" />
+      <div id="code-input" class="code-input"></div>
+      <div id="status" class="status"></div>
+
+      <!-- Reveal panel -->
+      <div id="reveal-panel" class="reveal-panel hidden">
+        <div class="reveal-content">
+          <div class="access-granted">ACCESS GRANTED</div>
+          <p id="secret-message" class="secret-message"></p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Build-injected constants -->
+    <script>
+      const CODE_HASH = '__CODE_HASH__';
+      const ENCRYPTED_MESSAGE = '__ENCRYPTED_MESSAGE__';
+      const CODE_LENGTH = __CODE_LENGTH__;
+      const IV = '__IV__';
+      const SALT = '__SALT__';
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
